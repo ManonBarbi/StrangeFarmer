@@ -13,10 +13,48 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Graphical">
+      <UniqueIdentifier>{c8d97aad-55b1-4f6a-b7af-f442c648a9c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Graphical">
+      <UniqueIdentifier>{607cd9ed-435a-4b88-a8a2-1c8f529b45ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Controller">
+      <UniqueIdentifier>{32b14754-67d7-41b0-b1f4-01ba413ceb60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Controller">
+      <UniqueIdentifier>{e61c02fb-4700-4080-8225-5c47d96a31bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Displayer.cpp">
+      <Filter>Fichiers sources\Graphical</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuManager.cpp">
+      <Filter>Fichiers sources\Graphical</Filter>
+    </ClCompile>
+    <ClCompile Include="MapCreator.cpp">
+      <Filter>Fichiers sources\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Fichiers sources\Controller</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Displayer.hh">
+      <Filter>Fichiers d%27en-tête\Graphical</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuManager.hh">
+      <Filter>Fichiers d%27en-tête\Graphical</Filter>
+    </ClInclude>
+    <ClInclude Include="MapCreator.h">
+      <Filter>Fichiers d%27en-tête\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Fichiers d%27en-tête\Controller</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

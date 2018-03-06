@@ -31,6 +31,7 @@ Displayer::~Displayer()
 
 void	Displayer::run()
 {
+	fillKeyMapping();
 	window->setFramerateLimit(60);
 	while (window->isOpen())
 	{
@@ -61,15 +62,77 @@ void	Displayer::run()
 	}
 }
 
+void	Displayer::fillKeyMapping()
+{
+	keymapping["Up"] = sf::Keyboard::Up;
+	keymapping["Down"] = sf::Keyboard::Down;
+	keymapping["Left"] = sf::Keyboard::Left;
+	keymapping["Right"] = sf::Keyboard::Right;
+}
+
 void	Displayer::handleEvent(sf::Event &event)
 {
-	if (event.type != sf::Event::KeyPressed)
-		player->resetTimer();
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	int	code = 0;
+
+	if (sf::Keyboard::isKeyPressed(keymapping["Up"]))
+		code += 1000;
+	if (sf::Keyboard::isKeyPressed(keymapping["Right"]))
+		code += 100;
+	if (sf::Keyboard::isKeyPressed(keymapping["Down"]))
+		code += 10;
+	if (sf::Keyboard::isKeyPressed(keymapping["Left"]))
+		code += 1;
+	
+	switch (code)
+	{
+	case 1000:
+	{
 		player->move(NORTH);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		break;
+	}
+	case 1100:
+	{
+		player->move(NORTHEAST);
+		break;
+	}
+	case 100:
+	{
+		player->move(EAST);
+		break;
+	}
+	case 110:
+	{
+		player->move(SOUTHEAST);
+		break;
+	}
+	case 10:
+	{
 		player->move(SOUTH);
-	std::cout << player->getPosY() << std::endl;
+		break;
+	}
+	case 11:
+	{
+		player->move(SOUTHWEST);
+		break;
+	}
+	case 1:
+	{
+		player->move(WEST);
+		break;
+	}
+	case 1001:
+	{
+		player->move(NORTHWEST);
+		break;
+	}
+	default:
+	{
+		player->resetTimer();
+		break;
+	}
+	}
+	std::cout << "Player X = " << player->getPosX() << std::endl;
+	std::cout << "Player Y = " << player->getPosY() << std::endl;
 }
 
 void	Displayer::handleDisplayGame(sf::Event &event)

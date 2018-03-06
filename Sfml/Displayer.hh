@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <map>
 #include "Player.h"
 #include "MenuManager.hh"
 
@@ -26,13 +27,15 @@ private:
 	void	displayMenu(sf::Event &event);
 	void	displayGame();
 	void	displayGameOver();
+	void	fillKeyMapping();
 
 
-	size_t				sizeXWindow;
-	size_t				sizeYWindow;
-	std::string			nameWindow;
-	sf::RenderWindow	*window;
-	t_menu				stateGame;
-	MenuManager			*menu;
-	Player				*player;
+	size_t										sizeXWindow;
+	size_t										sizeYWindow;
+	std::string									nameWindow;
+	sf::RenderWindow							*window;
+	t_menu										stateGame;
+	MenuManager									*menu;
+	Player										*player;
+	std::map<std::string, sf::Keyboard::Key>	keymapping;
 };

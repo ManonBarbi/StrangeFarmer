@@ -4,9 +4,9 @@
 
 typedef enum e_direction {
 	NORTH,
-	NORTHEST,
-	EST,
-	SOUTHEST,
+	NORTHEAST,
+	EAST,
+	SOUTHEAST,
 	SOUTH,
 	SOUTHWEST,
 	WEST,

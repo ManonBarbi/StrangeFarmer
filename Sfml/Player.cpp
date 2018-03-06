@@ -23,11 +23,15 @@ void Player::move(t_direction dir) {
 		case NORTH:
 			this->posY -= unit;
 			break;
-		case NORTHEST:
+		case NORTHEAST:
 			this->posY -= unit;
 			this->posX += unit;
 			break;
-		case EST:
+		case EAST:
+			this->posX += unit;
+			break;
+		case SOUTHEAST:
+			this->posY += unit;
 			this->posX += unit;
 			break;
 		case SOUTH:

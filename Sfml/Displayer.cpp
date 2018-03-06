@@ -9,7 +9,6 @@ Displayer::Displayer(const std::string &_nameWindow)
 	this->window = new sf::RenderWindow(sf::VideoMode(1920, 1080, 32), this->nameWindow.c_str(), sf::Style::Fullscreen);
 	this->menu = new MenuManager(this->window);
 	this->player = new Player(5, 5);
-	this->timer = false;
 }
 
 Displayer::Displayer(const std::string &_nameWindow, size_t _sizeXWindow, size_t _sizeYWindow)
@@ -21,7 +20,6 @@ Displayer::Displayer(const std::string &_nameWindow, size_t _sizeXWindow, size_t
 	this->window = new sf::RenderWindow(sf::VideoMode(this->sizeXWindow, this->sizeYWindow, 32), this->nameWindow.c_str());
 	this->menu = new MenuManager(this->window);
 	this->player = new Player(5, 5);
-	this->timer = false;
 }
 
 Displayer::~Displayer()
@@ -51,47 +49,27 @@ void	Displayer::run()
 					window->close();
 					break;
 				}
-				case sf::Keyboard::Up:
-				{
-					if (this->timer == false)
-					{
-						this->timer = true;
-						this->player->resetTimer();
-					}
-					break;
-				}
-				case sf::Keyboard::Down:
-				{
-					if (this->timer == false)
-					{
-						this->timer = true;
-						this->player->resetTimer();
-					}
-					break;
-				}
 				default:
 					break;
 				}
 			}
-			else if (event.type == sf::Event::KeyReleased)
-			{
-				this->timer = false;
-			}
 		}
-		handleEvent();
+		handleEvent(event);
 		window->clear();
 		handleDisplayGame(event);
 		window->display();
 	}
 }
 
-void	Displayer::handleEvent()
+void	Displayer::handleEvent(sf::Event &event)
 {
+	if (event.type != sf::Event::KeyPressed)
+		player->resetTimer();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		player->move(NORTH);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 		player->move(SOUTH);
-	std::cout << "POSITION Y DU JOUEUR = " << player->getPosY() << std::endl;
+	std::cout << player->getPosY() << std::endl;
 }
 
 void	Displayer::handleDisplayGame(sf::Event &event)

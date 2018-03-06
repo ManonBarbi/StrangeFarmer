@@ -21,7 +21,7 @@ public:
 	void	run();
 
 private:
-	void	handleEvent();
+	void	handleEvent(sf::Event &event);
 	void	handleDisplayGame(sf::Event &event);
 	void	displayMenu(sf::Event &event);
 	void	displayGame();
@@ -35,5 +35,4 @@ private:
 	t_menu				stateGame;
 	MenuManager			*menu;
 	Player				*player;
-	bool				timer;
 };

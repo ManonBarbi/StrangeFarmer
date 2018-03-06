@@ -131,8 +131,8 @@ void	Displayer::handleEvent(sf::Event &event)
 		break;
 	}
 	}
-	std::cout << "Player X = " << player->getPosX() << std::endl;
-	std::cout << "Player Y = " << player->getPosY() << std::endl;
+	/*std::cout << "Player X = " << player->getPosX() << std::endl;
+	std::cout << "Player Y = " << player->getPosY() << std::endl;*/
 }
 
 void	Displayer::handleDisplayGame(sf::Event &event)

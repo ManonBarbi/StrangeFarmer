@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <chrono>
+#include "Inventory.h"
+#include "Shop.h"
 
 typedef enum e_direction {
 	NORTH,
@@ -20,6 +22,8 @@ private:
 	int posX;
 	int posY;
 	std::chrono::steady_clock::time_point chrono;
+	Inventory inventory;
+	Shop shop;
 
 public:
 	Player(int posx, int posy);
@@ -30,5 +34,8 @@ public:
 	void setPosX(int x);
 	void setPosY(int y);
 	void resetTimer();
+	Inventory getInventory();
+	void Sell(int id);
+	bool Buy(int id);
 };
 

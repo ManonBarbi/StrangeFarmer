@@ -4,6 +4,13 @@
 #include <vector>
 #include <iostream>
 
+typedef enum	e_typeMenu
+{
+	MAIN,
+	OPTION,
+	EXIT
+}				t_typeMenu;
+
 typedef struct			s_bird
 {
 	sf::IntRect			birdAnimationPos;
@@ -14,11 +21,11 @@ typedef struct			s_bird
 	double				angle;
 }						t_bird;
 
-typedef struct			s_leaf
+typedef struct			s_pos
 {
-	double				posXLeaf;
-	double				posYLeaf;
-}						t_leaf;
+	double				posX;
+	double				posY;
+}						t_pos;
 
 class MenuManager
 {
@@ -33,6 +40,9 @@ private:
 	void				calcAnimationBird();
 	void				spawnBirdEvent();
 	void				spawnLeafEvent();
+	void				drawMenuType();
+	void				drawButtonFarm();
+	void				eventMouse();
 
 	sf::RenderWindow	*window;
 	//Background
@@ -61,10 +71,20 @@ private:
 	//leaf
 	sf::Texture			leafTexture;
 	sf::Sprite			leaf;
-	std::vector<t_leaf>	leafs;
+	std::vector<t_pos>	leafs;
 	sf::Int32			timerBeforeNextLeaf;
 	sf::Clock			spawnLeaf;
+	//Button
+	sf::Texture			buttonFarmTexture;
+	sf::Texture			buttonFarmGreyTexture;
+	sf::Sprite			buttonFarm;
+	t_pos				buttonPosition;
+	bool				buttonFarmIsClicked;
 	//Ration calcul
 	double				ratioX;
 	double				ratioY;
+	//Menu state
+	t_typeMenu			state;
+	//Bool deplacement player
+	bool				playerFarmMove;
 };

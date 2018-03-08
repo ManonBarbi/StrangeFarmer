@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <iostream>
+#include "Displayer.hh"
 
 typedef enum	e_typeMenu
 {
@@ -32,16 +33,15 @@ class MenuManager
 public:
 	MenuManager(sf::RenderWindow *_window);
 	~MenuManager();
-	void	run(sf::Event &event);
+	void	run(sf::Event &event, t_menu &stateGame);
 
 private:
 	void				calcLogoPosition();
-	void				calcAnimationPlayer();
+	void				calcAnimationPlayer(t_menu &stateGame);
 	void				calcAnimationBird();
 	void				spawnBirdEvent();
 	void				spawnLeafEvent();
-	void				drawMenuType();
-	void				drawButtonFarm();
+	void				drawButton();
 	void				eventMouse();
 
 	sf::RenderWindow	*window;
@@ -62,7 +62,8 @@ private:
 	sf::Sprite			player;
 	sf::IntRect			playerAnimationPos;
 	sf::Texture			playerTextureRun;
-	sf::IntRect			playerAnimationPosRun;
+	sf::IntRect			playerAnimationPosRunLeft;
+	sf::IntRect			playerAnimationPosRunRight;
 	sf::Clock			clockAnimationPlayer;
 	//Bird
 	sf::Texture			birdTexture;
@@ -76,12 +77,18 @@ private:
 	std::vector<t_pos>	leafs;
 	sf::Int32			timerBeforeNextLeaf;
 	sf::Clock			spawnLeaf;
-	//Button
+	//Button Farm
 	sf::Texture			buttonFarmTexture;
 	sf::Texture			buttonFarmGreyTexture;
 	sf::Sprite			buttonFarm;
-	t_pos				buttonPosition;
+	t_pos				buttonFarmPosition;
 	bool				buttonFarmIsClicked;
+	//Button Farm
+	sf::Texture			buttonExitTexture;
+	sf::Texture			buttonExitGreyTexture;
+	sf::Sprite			buttonExit;
+	t_pos				buttonExitPosition;
+	bool				buttonExitIsClicked;
 	//Ration calcul
 	double				ratioX;
 	double				ratioY;
@@ -91,4 +98,6 @@ private:
 	bool				playerFarmMove;
 	bool				playerOptionMove;
 	bool				playerExitMove;
+	t_pos				playerPosition;
+	double				playerMoveVar;
 };

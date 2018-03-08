@@ -1,4 +1,5 @@
 #include "Displayer.hh"
+#include "MenuManager.hh"
 
 Displayer::Displayer(const std::string &_nameWindow)
 {
@@ -159,7 +160,7 @@ void	Displayer::handleDisplayGame(sf::Event &event)
 
 void	Displayer::displayMenu(sf::Event &event)
 {
-	this->menu->run(event);
+	this->menu->run(event, this->stateGame);
 }
 
 void	Displayer::displayGame()

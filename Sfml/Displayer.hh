@@ -4,7 +4,8 @@
 #include <iostream>
 #include <map>
 #include "Player.h"
-#include "MenuManager.hh"
+
+class MenuManager;
 
 typedef	enum e_menu
 {

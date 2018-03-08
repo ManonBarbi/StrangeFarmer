@@ -26,6 +26,12 @@ MenuManager::MenuManager(sf::RenderWindow *_window)
 	this->playerAnimationPos.height = 28;
 	this->player.setTexture(this->playerTexture);
 	this->player.setTextureRect(this->playerAnimationPos);
+	//PlayerRun
+	this->playerTextureRun.loadFromFile("ress\\player_menu_run.png");
+	this->playerAnimationPosRun.left = 0;
+	this->playerAnimationPosRun.top = 0;
+	this->playerAnimationPosRun.width = 28;
+	this->playerAnimationPosRun.height = 28;
 	//Bird
 	this->birdTexture.loadFromFile("ress\\bird_menu.png");
 	this->bird.setTexture(this->birdTexture);
@@ -56,6 +62,8 @@ MenuManager::MenuManager(sf::RenderWindow *_window)
 	this->state = MAIN;
 	//Bool deplacement joueur
 	this->playerFarmMove = false;
+	this->playerOptionMove = false;
+	this->playerExitMove = false;
 }
 
 MenuManager::~MenuManager()
@@ -199,6 +207,13 @@ void	MenuManager::drawMenuType()
 {
 	switch (this->state)
 	{
+	case MAIN:
+	{
+		this->playerFarmMove = false;
+		this->playerOptionMove = false;
+		this->playerExitMove = false;
+		break;
+	}
 	case OPTION:
 	{
 		//drawOptionMenu();
@@ -242,6 +257,8 @@ void	MenuManager::eventMouse()
 		this->buttonFarm.setScale(ratioX * 0.45, ratioY * 0.45);
 		this->buttonFarmIsClicked = false;
 		this->playerFarmMove = true;
+		this->playerOptionMove = false;
+		this->playerExitMove = false;
 	}
 	else if (this->buttonFarmIsClicked && 
 		!(position.x >= minX && position.x <= maxX &&

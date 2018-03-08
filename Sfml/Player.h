@@ -21,6 +21,7 @@ class Player
 private:
 	int posX;
 	int posY;
+	int money;
 	std::chrono::steady_clock::time_point chrono;
 	Inventory inventory;
 	Shop shop;

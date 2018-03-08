@@ -9,6 +9,7 @@ private:
 public:
 	Shop();
 	~Shop();
-	std::vector<IItem*> getShopVec();
+	std::vector<IItem*> &getShopVec();
+	IItem				*findItem(int id);
 };
 

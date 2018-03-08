@@ -4,8 +4,8 @@
 
 Inventory::Inventory()
 {
-	this->money = 10;
- }
+
+}
 
 
 Inventory::~Inventory()
@@ -20,18 +20,17 @@ void Inventory::removeItemToInventory(IItem *i) {
 	this->inventoryVec.erase(std::remove(this->inventoryVec.begin(), this->inventoryVec.end(), i), this->inventoryVec.end());
 }
 
-std::vector<IItem*> Inventory::getInventoryVec() {
-	return this->inventoryVec;
+std::vector<IItem*>	&Inventory::getInventoryVec()
+{
+	return (this->inventoryVec);
 }
 
-int Inventory::getMoney() {
-	return this->money;
-}
-
-void Inventory::setMoney(int money) {
-	this->money = money;
-}
-
-void Inventory::setInventoryVec(std::vector<IItem*> vec) {
-	this->inventoryVec = vec;
+IItem *Inventory::findItem(int id)
+{
+	for (size_t i = 0; i < this->inventoryVec.size(); ++i)
+	{
+		if (this->inventoryVec[i]->getId() == id)
+			return (this->inventoryVec[i]);
+	}
+	return (NULL);
 }

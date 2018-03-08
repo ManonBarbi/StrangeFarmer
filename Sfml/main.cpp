@@ -2,7 +2,7 @@
 
 int		main()
 {
-	Displayer	client("StrangeFarmer", 1000, 1000);
+	Displayer	client("StrangeFarmer");
 
 	client.run();
 	return (0);

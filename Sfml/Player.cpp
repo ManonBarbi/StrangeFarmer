@@ -4,6 +4,7 @@ Player::Player(int posx, int posy)
 {
 	this->posX = posx * 100;
 	this->posY = posy * 100;
+	this->money = 10;
 	this->chrono = std::chrono::steady_clock::now();
 	this->inventory = Inventory();
 	this->shop = Shop();
@@ -58,26 +59,22 @@ void Player::move(t_direction dir) {
 }
 
 bool Player::Buy(int id) {
-	std::vector<IItem*> vecShop = this->shop.getShopVec();
-	std::vector<IItem*> vecInv = this->inventory.getInventoryVec();
+	IItem *buyItem = this->shop.findItem(id);
 
-	IItem *buyItem = vecShop[id - 1];
-	if (this->inventory.getMoney() - buyItem->getBuyPrice() < 0) {
+	if (this->money - buyItem->getBuyPrice() < 0) {
 		return false;
 	}
-	this->inventory.setMoney(this->inventory.getMoney() - buyItem->getBuyPrice());
-	vecInv.push_back(buyItem->getInstance());
-	this->inventory.setInventoryVec(vecInv);
+	this->money -= buyItem->getBuyPrice();
+	this->inventory.addItemToInventory(buyItem->getInstance());
 	return true;
 }
 
 void Player::Sell(int id) {
-	std::vector<IItem*> vec = this->inventory.getInventoryVec();
-	IItem *sellItem = vec[id - 1];
-	this->inventory.setMoney(this->inventory.getMoney() + sellItem->getSellPrice());
-	vec.erase(vec.begin() + id - 1);
-	this->inventory.setInventoryVec(vec);
-	delete(sellItem);
+	IItem *sellItem = this->inventory.findItem(id);
+
+	this->money += sellItem->getSellPrice();
+	this->inventory.removeItemToInventory(sellItem);
+	delete (sellItem);
 }
 
 void Player::resetTimer() {

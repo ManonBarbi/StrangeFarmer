@@ -61,6 +61,8 @@ private:
 	sf::Texture			playerTexture;
 	sf::Sprite			player;
 	sf::IntRect			playerAnimationPos;
+	sf::Texture			playerTextureRun;
+	sf::IntRect			playerAnimationPosRun;
 	sf::Clock			clockAnimationPlayer;
 	//Bird
 	sf::Texture			birdTexture;
@@ -87,4 +89,6 @@ private:
 	t_typeMenu			state;
 	//Bool deplacement player
 	bool				playerFarmMove;
+	bool				playerOptionMove;
+	bool				playerExitMove;
 };

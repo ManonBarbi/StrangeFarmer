@@ -1,8 +1,6 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
 #include <vector>
-#include <iostream>
 #include "Displayer.hh"
 
 typedef enum	e_typeMenu
@@ -31,9 +29,10 @@ typedef struct			s_pos
 class MenuManager
 {
 public:
-	MenuManager(sf::RenderWindow *_window);
+	MenuManager(sf::RenderWindow *_window, std::map<std::string, sf::Keyboard::Key> *_keymapping);
 	~MenuManager();
-	void	run(sf::Event &event, t_menu &stateGame);
+	void	run(t_menu &stateGame);
+	void	handleEvent(sf::Event &event);
 
 private:
 	void				calcLogoPosition();
@@ -89,7 +88,7 @@ private:
 	sf::Sprite			buttonExit;
 	t_pos				buttonExitPosition;
 	bool				buttonExitIsClicked;
-	//Ration calcul
+	//Ratio calcul
 	double				ratioX;
 	double				ratioY;
 	//Menu state
@@ -100,4 +99,5 @@ private:
 	bool				playerExitMove;
 	t_pos				playerPosition;
 	double				playerMoveVar;
+	std::map<std::string, sf::Keyboard::Key>	*keymapping;
 };

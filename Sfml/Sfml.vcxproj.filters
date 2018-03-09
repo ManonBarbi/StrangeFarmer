@@ -51,6 +51,9 @@
     <ClCompile Include="Shop.cpp">
       <Filter>Fichiers sources\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Fichiers sources\Graphical</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Displayer.hh">
@@ -75,6 +78,12 @@
       <Filter>Fichiers d%27en-tête\Controller</Filter>
     </ClInclude>
     <ClInclude Include="Shop.h">
+      <Filter>Fichiers d%27en-tête\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.hh">
+      <Filter>Fichiers d%27en-tête\Graphical</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
       <Filter>Fichiers d%27en-tête\Controller</Filter>
     </ClInclude>
   </ItemGroup>

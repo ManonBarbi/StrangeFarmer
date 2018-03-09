@@ -2,10 +2,11 @@
 #include <string>
 #include "MenuManager.hh"
 
-MenuManager::MenuManager(sf::RenderWindow *_window)
+MenuManager::MenuManager(sf::RenderWindow *_window, std::map<std::string, sf::Keyboard::Key> *_keymapping)
 {
 	srand(time(NULL));
 	this->window = _window;
+	this->keymapping = _keymapping;
 	//Background
 	this->backgroundTexture.loadFromFile("ress\\menu_background.png");
 	this->background.setTexture(this->backgroundTexture);
@@ -82,16 +83,15 @@ MenuManager::MenuManager(sf::RenderWindow *_window)
 	this->playerExitMove = false;
 	this->playerPosition.posX = 35.1562;
 	this->playerPosition.posY = 76.5;
-	this->playerMoveVar = -0.1;
+	this->playerMoveVar = -0.15;
 }
 
 MenuManager::~MenuManager()
 {
 }
 
-void	MenuManager::run(sf::Event &event, t_menu &stateGame)
+void	MenuManager::handleEvent(sf::Event &event)
 {
-
 	if (event.type == sf::Event::Resized)
 	{
 		this->ratioX = this->window->getSize().x / 1920.0;
@@ -104,11 +104,18 @@ void	MenuManager::run(sf::Event &event, t_menu &stateGame)
 		this->leaf.setScale(ratioX, ratioY);
 		window->setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
 	}
+	else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+	{
+		window->close();
+	}
+}
+
+void	MenuManager::run(t_menu &stateGame)
+{
 	eventMouse();
 	calcLogoPosition();
 	calcAnimationPlayer(stateGame);
 	spawnBirdEvent();
-
 	this->window->draw(this->background);
 	calcAnimationBird();
 	spawnLeafEvent();
@@ -145,7 +152,6 @@ void	MenuManager::calcAnimationPlayer(t_menu &stateGame)
 {
 	if (this->clockAnimationPlayer.getElapsedTime().asMilliseconds() >= sf::Int32(75))
 	{
-		std::cout << this->playerFarmMove << std::endl;
 		if (!this->playerExitMove && !this->playerFarmMove && !this->playerOptionMove)
 		{
 			this->playerAnimationPos.left += 41;
@@ -298,7 +304,7 @@ void	MenuManager::eventMouse()
 		this->playerExitMove = false;
 		this->player.setTexture(this->playerTextureRun);
 		this->player.setTextureRect(this->playerAnimationPosRunLeft);
-		this->playerMoveVar = -0.1;
+		this->playerMoveVar = -0.15;
 	}
 	else if (this->buttonExitIsClicked && !sf::Mouse::isButtonPressed(sf::Mouse::Left) &&
 		position.x >= minXExit && position.x <= maxXExit &&
@@ -312,7 +318,7 @@ void	MenuManager::eventMouse()
 		this->playerExitMove = true;
 		this->player.setTexture(this->playerTextureRun);
 		this->player.setTextureRect(this->playerAnimationPosRunRight);
-		this->playerMoveVar = 0.1;
+		this->playerMoveVar = 0.15;
 	}
 	else if (this->buttonFarmIsClicked && 
 		!(position.x >= minXFarm && position.x <= maxXFarm &&

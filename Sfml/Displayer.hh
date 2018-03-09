@@ -3,9 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <map>
-#include "Player.h"
 
 class MenuManager;
+class Game;
 
 typedef	enum e_menu
 {
@@ -23,9 +23,8 @@ public:
 	void	run();
 
 private:
-	void	handleEvent(sf::Event &event);
-	void	handleDisplayGame(sf::Event &event);
-	void	displayMenu(sf::Event &event);
+	void	handleDisplayGame();
+	void	displayMenu();
 	void	displayGame();
 	void	displayGameOver();
 	void	fillKeyMapping();
@@ -37,6 +36,6 @@ private:
 	sf::RenderWindow							*window;
 	t_menu										stateGame;
 	MenuManager									*menu;
-	Player										*player;
+	Game										*game;
 	std::map<std::string, sf::Keyboard::Key>	keymapping;
 };

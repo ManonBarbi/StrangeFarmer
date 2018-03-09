@@ -122,6 +122,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Displayer.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapCreator.cpp" />
@@ -132,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Displayer.hh" />
+    <ClInclude Include="Game.hh" />
     <ClInclude Include="IItem.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="MapCreator.h" />
@@ -139,6 +141,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Seed.h" />
     <ClInclude Include="Shop.h" />
+    <ClInclude Include="Tile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -40,5 +40,6 @@ IItem *Seed::getInstance() {
 	return new Seed();
 }
 
-void Seed::use() {
+bool Seed::use() {
+	return true;
 }

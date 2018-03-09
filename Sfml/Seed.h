@@ -12,7 +12,7 @@ private:
 public:
 	Seed();
 	~Seed();
-	void use();
+	bool use();
 	int getId();
 	int getSellPrice();
 	int getBuyPrice();

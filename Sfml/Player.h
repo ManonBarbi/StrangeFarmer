@@ -3,6 +3,7 @@
 #include <chrono>
 #include "Inventory.h"
 #include "Shop.h"
+#include "MapCreator.h"
 
 typedef enum e_direction {
 	NORTH,
@@ -25,18 +26,19 @@ private:
 	std::chrono::steady_clock::time_point chrono;
 	Inventory inventory;
 	Shop shop;
+	MapCreator map;
 
 public:
-	Player(int posx, int posy);
+	Player();
 	~Player();
 	void move(t_direction dir);
 	int getPosX();
 	int getPosY();
-	void setPosX(int x);
-	void setPosY(int y);
 	void resetTimer();
-	Inventory getInventory();
-	void Sell(int id);
-	bool Buy(int id);
+	Inventory &getInventory();
+	void sell(int id);
+	bool buy(int id);
+	bool plowed(int x, int y);
+	MapCreator &getMapCreator();
 };
 

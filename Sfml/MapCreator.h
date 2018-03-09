@@ -1,15 +1,21 @@
 #pragma once
+#include "Tile.h"
+
 class MapCreator
 {
 private:
 	int sizeX;
 	int sizeY;
-	int *map;
+	Tile *map;
+	std::vector<Tile*> plowedTiles;
+	std::vector<Tile*> wetTiles;
+	std::vector<Tile*> huntedTiles;
 public:
-	MapCreator(int sizex, int sizey);
+	MapCreator();
 	~MapCreator();
 	int getSizeX();
 	int getSizeY();
-	int *getMap();
+	Tile *getMap();
+	bool changeTileStatus(int x, int y, t_status status);
 };
 

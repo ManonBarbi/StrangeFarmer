@@ -1,13 +1,11 @@
 #include "Player.h"
 
-Player::Player(int posx, int posy)
+Player::Player()
 {
-	this->posX = posx * 100;
-	this->posY = posy * 100;
+	this->posX = 50 * 100;
+	this->posY = 50 * 100;
 	this->money = 10;
 	this->chrono = std::chrono::steady_clock::now();
-	this->inventory = Inventory();
-	this->shop = Shop();
 }
 
 Player::~Player()
@@ -58,7 +56,7 @@ void Player::move(t_direction dir) {
 	}
 }
 
-bool Player::Buy(int id) {
+bool Player::buy(int id) {
 	IItem *buyItem = this->shop.findItem(id);
 
 	if (this->money - buyItem->getBuyPrice() < 0) {
@@ -69,12 +67,16 @@ bool Player::Buy(int id) {
 	return true;
 }
 
-void Player::Sell(int id) {
+void Player::sell(int id) {
 	IItem *sellItem = this->inventory.findItem(id);
 
 	this->money += sellItem->getSellPrice();
 	this->inventory.removeItemToInventory(sellItem);
 	delete (sellItem);
+}
+
+bool Player::plowed(int x, int y) {
+	return this->map.changeTileStatus(x, y, PLOWED_LAND);
 }
 
 void Player::resetTimer() {
@@ -89,14 +91,10 @@ int Player::getPosY() {
 	return this->posY;
 }
 
-void Player::setPosX(int x) {
-	this->posX = x;
-}
-
-void Player::setPosY(int y) {
-	this->posY = y;
-}
-
-Inventory Player::getInventory() {
+Inventory &Player::getInventory() {
 	return this->inventory;
+}
+
+MapCreator &Player::getMapCreator() {
+	return this->map;
 }

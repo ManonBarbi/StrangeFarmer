@@ -83,12 +83,17 @@ Game::Game(sf::RenderWindow *_window, std::map<std::string, sf::Keyboard::Key> *
 	//house
 	this->houseTexture.loadFromFile("ress\\house.png");
 	this->house.setTexture(this->houseTexture);
+	//sky
+	this->skyTexture.loadFromFile("ress\\sky.png");
+	this->sky.setTexture(this->skyTexture);
 	//Ratio Calcul
 	this->ratioX = this->window->getSize().x / 1920.0;
 	this->ratioY = this->window->getSize().y / 1080.0;
 	this->tile.setScale(ratioX * 2, ratioY * 2);
 	this->playerSprite.setScale(ratioX * 2, ratioY * 2);
 	this->house.setScale(ratioX, ratioY);
+	this->sky.setScale(ratioX, ratioY);
+	this->sky.setPosition(0, 0);
 	//creation du tabeau de pixel
 	this->mapTexture.create(this->player.getMapCreator().getSizeX() * 64, this->player.getMapCreator().getSizeY() * 64);
 }
@@ -107,6 +112,7 @@ void	Game::handleEvent(sf::Event &event)
 		this->tile.setScale(ratioX * 2, ratioY * 2);
 		this->playerSprite.setScale(ratioX * 2, ratioY * 2);
 		this->house.setScale(ratioX, ratioY);
+		this->sky.setScale(ratioX, ratioY);
 		window->setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
 		this->mapTexture.clear();
 		this->refreshMap();
@@ -120,6 +126,7 @@ void	Game::handleEvent(sf::Event &event)
 void	Game::run(t_menu &stateGame)
 {
 	handleKeyboard();
+	displaySky();
 	displayMap();
 	displayHouse();
 	displayPlayer();
@@ -333,4 +340,9 @@ void	Game::displayHouse()
 {
 	this->house.setPosition(this->player.getMapCreator().getSizeX() / 2 * 64.0 * ratioX - (this->player.getPosX() / 100.0 * 64.0 * ratioX) + this->window->getSize().x / 2 - this->houseTexture.getSize().x * ratioX / 2, 64.0 * ratioY - (this->player.getPosY() / 100.0 * 64.0 * ratioY) + this->window->getSize().y / 2);
 	this->window->draw(this->house);
+}
+
+void	Game::displaySky()
+{
+	this->window->draw(this->sky);
 }

@@ -16,6 +16,7 @@ private:
 	void	displayMap();
 	void	displayPlayer();
 	void	displayHouse();
+	void	displaySky();
 	int		getOffsetTile(int x, int y);
 	void	refreshMap();
 
@@ -45,6 +46,9 @@ private:
 	//house
 	sf::Texture			houseTexture;
 	sf::Sprite			house;
+	//sky
+	sf::Texture			skyTexture;
+	sf::Sprite			sky;
 	//Ratio calcul
 	double				ratioX;
 	double				ratioY;

@@ -82,7 +82,7 @@ MenuManager::MenuManager(sf::RenderWindow *_window, std::map<std::string, sf::Ke
 	this->playerOptionMove = false;
 	this->playerExitMove = false;
 	this->playerPosition.posX = 35.1562;
-	this->playerPosition.posY = 76.5;
+	this->playerPosition.posY = 79;
 	this->playerMoveVar = -0.15;
 }
 
@@ -102,6 +102,8 @@ void	MenuManager::handleEvent(sf::Event &event)
 		this->player.setScale(2 * ratioX, 2 * ratioY);
 		this->bird.setScale(ratioX, ratioY);
 		this->leaf.setScale(ratioX, ratioY);
+		this->buttonFarm.setScale(ratioX * 0.45, ratioY * 0.45);
+		this->buttonExit.setScale(ratioX * 0.45, ratioY * 0.45);
 		window->setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
 	}
 	else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
@@ -179,7 +181,7 @@ void	MenuManager::calcAnimationPlayer(t_menu &stateGame)
 	}
 	if (this->playerFarmMove || this->playerExitMove)
 		this->playerPosition.posX += this->playerMoveVar;
-	this->player.setPosition(this->playerPosition.posX / 100 * ratioX * this->window->getSize().x, this->playerPosition.posY / 100 * ratioY * this->window->getSize().y);
+	this->player.setPosition(this->playerPosition.posX / 100.0 * this->window->getSize().x - this->playerAnimationPos.width * ratioX, this->playerPosition.posY / 100.0 * this->window->getSize().y - this->playerAnimationPos.height * ratioY);
 	if (this->playerPosition.posX > 105)
 		this->window->close();
 	else if (this->playerPosition.posX < -5)

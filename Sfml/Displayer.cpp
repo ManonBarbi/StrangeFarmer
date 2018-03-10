@@ -37,7 +37,6 @@ void	Displayer::run()
 	while (window->isOpen())
 	{
 		sf::Event event;
-		sf::Event cpy;
 
 		while (window->pollEvent(event))
 		{

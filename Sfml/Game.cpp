@@ -80,11 +80,15 @@ Game::Game(sf::RenderWindow *_window, std::map<std::string, sf::Keyboard::Key> *
 	this->playerSprite.setTextureRect(this->playerPositionTextureIdle[0]);
 	this->playerDirection = 0;
 	this->playerIsWalking = false;
+	//house
+	this->houseTexture.loadFromFile("ress\\house.png");
+	this->house.setTexture(this->houseTexture);
 	//Ratio Calcul
 	this->ratioX = this->window->getSize().x / 1920.0;
 	this->ratioY = this->window->getSize().y / 1080.0;
 	this->tile.setScale(ratioX * 2, ratioY * 2);
 	this->playerSprite.setScale(ratioX * 2, ratioY * 2);
+	this->house.setScale(ratioX, ratioY);
 	//creation du tabeau de pixel
 	this->mapTexture.create(this->player.getMapCreator().getSizeX() * 64, this->player.getMapCreator().getSizeY() * 64);
 }
@@ -102,6 +106,7 @@ void	Game::handleEvent(sf::Event &event)
 		this->ratioY = this->window->getSize().y / 1080.0;
 		this->tile.setScale(ratioX * 2, ratioY * 2);
 		this->playerSprite.setScale(ratioX * 2, ratioY * 2);
+		this->house.setScale(ratioX, ratioY);
 		window->setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
 		this->mapTexture.clear();
 		this->refreshMap();
@@ -116,6 +121,7 @@ void	Game::run(t_menu &stateGame)
 {
 	handleKeyboard();
 	displayMap();
+	displayHouse();
 	displayPlayer();
 }
 
@@ -321,4 +327,10 @@ void	Game::displayPlayer()
 		this->playerSprite.setTextureRect(this->playerPositionTextureIdle[this->playerDirection]);
 	this->playerSprite.setPosition(this->window->getSize().x / 2 - (this->playerPositionTextureIdle[0].width / 2) * ratioX, this->window->getSize().y / 2 - (this->playerPositionTextureIdle[0].height / 2) * ratioY);
 	this->window->draw(this->playerSprite);
+}
+
+void	Game::displayHouse()
+{
+	this->house.setPosition(this->player.getMapCreator().getSizeX() / 2 * 64.0 * ratioX - (this->player.getPosX() / 100.0 * 64.0 * ratioX) + this->window->getSize().x / 2 - this->houseTexture.getSize().x * ratioX / 2, 64.0 * ratioY - (this->player.getPosY() / 100.0 * 64.0 * ratioY) + this->window->getSize().y / 2);
+	this->window->draw(this->house);
 }

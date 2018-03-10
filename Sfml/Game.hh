@@ -15,6 +15,7 @@ private:
 	void	handleKeyboard();
 	void	displayMap();
 	void	displayPlayer();
+	void	displayHouse();
 	int		getOffsetTile(int x, int y);
 	void	refreshMap();
 
@@ -41,6 +42,9 @@ private:
 	int					playerDirection;
 	bool				playerIsWalking;
 	sf::Clock			playerClockAnimation;
+	//house
+	sf::Texture			houseTexture;
+	sf::Sprite			house;
 	//Ratio calcul
 	double				ratioX;
 	double				ratioY;

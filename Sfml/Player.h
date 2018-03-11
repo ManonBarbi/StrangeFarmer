@@ -36,9 +36,11 @@ public:
 	int getPosY();
 	void resetTimer();
 	Inventory &getInventory();
+	Shop &getShop();
 	void sell(int id);
 	bool buy(int id);
-	bool plowed(int x, int y);
+	void plowed(int x, int y);
 	MapCreator &getMapCreator();
+	bool isDead();
 };
 

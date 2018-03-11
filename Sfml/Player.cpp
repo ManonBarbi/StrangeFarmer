@@ -14,6 +14,8 @@ Player::~Player()
 
 void Player::move(t_direction dir) {
 	int secondPerUnit = 2500;
+	int	tmpPosX = this->posX;
+	int	tmpPosY = this->posY;
 	if (dir % 2 != 0) {
 		secondPerUnit = 3535;
 	}
@@ -52,6 +54,10 @@ void Player::move(t_direction dir) {
 		default:
 			break;
 		}
+		if (this->map.getMap()[this->posY * this->map.getSizeX() + this->posX].status == BLOCK) {
+			this->posX = tmpPosX;
+			this->posY = tmpPosY;
+		}
 		resetTimer();
 	}
 }
@@ -75,8 +81,15 @@ void Player::sell(int id) {
 	delete (sellItem);
 }
 
-bool Player::plowed(int x, int y) {
-	return this->map.changeTileStatus(x, y, PLOWED_LAND);
+void Player::plowed(int x, int y) {
+	this->map.changeTileStatus(x, y, PLOWED_LAND);
+}
+
+bool Player::isDead() {
+	if (this->map.getPlants().size == 0 && this->inventory.getInventoryVec().size == 0 && this->money <= 1) {
+		return true;
+	}
+	return false;
 }
 
 void Player::resetTimer() {
@@ -97,4 +110,8 @@ Inventory &Player::getInventory() {
 
 MapCreator &Player::getMapCreator() {
 	return this->map;
+}
+
+Shop &Player::getShop() {
+	return this->shop;
 }

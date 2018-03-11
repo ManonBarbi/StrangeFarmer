@@ -6,7 +6,9 @@ typedef enum e_status {
 	PLOWED_LAND,
 	WET_PLOWED_LAND,
 	HUNTED_LAND,
-	WET_HUNTED_LAND
+	WET_HUNTED_LAND,
+	DESTROY,
+	BLOCK
 } t_status;
 
 class Tile
@@ -16,6 +18,8 @@ public:
 	sf::Clock plowedChrono;
 	sf::Clock huntedChrono;
 	t_status status;
+	int x;
+	int y;
 
 	Tile() {
 		this->status = LAND;

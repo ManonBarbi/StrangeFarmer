@@ -2,8 +2,8 @@
 
 Player::Player()
 {
-	this->posX = 50 * 100;
-	this->posY = 50 * 100;
+	this->posX = 15 * 100;
+	this->posY = 15 * 100;
 	this->money = 10;
 	this->chrono = std::chrono::steady_clock::now();
 }
@@ -54,7 +54,9 @@ void Player::move(t_direction dir) {
 		default:
 			break;
 		}
-		if (this->map.getMap()[this->posY * this->map.getSizeX() + this->posX].status == BLOCK) {
+		if (this->posX < 50 || this->posX / 100 >= this->map.getSizeX() || this->posY < 0 || this->posY >= this->map.getSizeY() * 100 - 50 ||
+			this->map.getMap()[this->posY / 100 * this->map.getSizeX() + this->posX / 100].status == BLOCK ||
+			this->map.getMap()[this->posY / 100 * this->map.getSizeX() + this->posX / 100].status == HOUSE) {
 			this->posX = tmpPosX;
 			this->posY = tmpPosY;
 		}
@@ -86,7 +88,7 @@ void Player::plowed(int x, int y) {
 }
 
 bool Player::isDead() {
-	if (this->map.getPlants().size == 0 && this->inventory.getInventoryVec().size == 0 && this->money <= 1) {
+	if (this->map.getPlants().size() == 0 && this->inventory.getInventoryVec().size() == 0 && this->money <= 1) {
 		return true;
 	}
 	return false;

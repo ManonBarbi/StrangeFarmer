@@ -8,7 +8,8 @@ typedef enum e_status {
 	HUNTED_LAND,
 	WET_HUNTED_LAND,
 	DESTROY,
-	BLOCK
+	BLOCK,
+	HOUSE,
 } t_status;
 
 class Tile

@@ -218,7 +218,7 @@ void	Game::refreshMap()
 		for (size_t j = 0; j < this->player.getMapCreator().getSizeX(); ++j)
 		{
 			this->tile.setPosition(j * 64.0 * ratioX, (this->player.getMapCreator().getSizeY() - 1) * 64.0 - (i * 64.0 * ratioY));
-			switch (this->player.getMapCreator().getMap()[i * 100 + j].status)
+			switch (this->player.getMapCreator().getMap()[i * this->player.getMapCreator().getSizeX() + j].status)
 			{
 			case LAND:
 			{
@@ -332,7 +332,7 @@ void	Game::displayPlayer()
 		this->playerSprite.setTextureRect(this->playerPositionTextureWalk[this->playerDirection]);
 	else
 		this->playerSprite.setTextureRect(this->playerPositionTextureIdle[this->playerDirection]);
-	this->playerSprite.setPosition(this->window->getSize().x / 2 - (this->playerPositionTextureIdle[0].width / 2) * ratioX, this->window->getSize().y / 2 - (this->playerPositionTextureIdle[0].height / 2) * ratioY);
+	this->playerSprite.setPosition(this->window->getSize().x / 2 - 32.0 * ratioX, this->window->getSize().y / 2 - 30 * ratioY);
 	this->window->draw(this->playerSprite);
 }
 

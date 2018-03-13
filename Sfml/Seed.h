@@ -1,5 +1,7 @@
 #pragma once
 #include "IItem.h"
+#include "MapCreator.h"
+#include "BasicFlower.h"
 
 class Seed : public IItem
 {
@@ -9,10 +11,12 @@ private:
 	int buyPrice;
 	std::string name;
 	std::string description;
+	MapCreator mp;
 public:
 	Seed();
+	Seed(MapCreator &mp);
 	~Seed();
-	bool use();
+	bool use(int x, int y, int playerX, int playerY);
 	int getId();
 	int getSellPrice();
 	int getBuyPrice();

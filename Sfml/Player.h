@@ -25,8 +25,8 @@ private:
 	int money;
 	std::chrono::steady_clock::time_point chrono;
 	Inventory inventory;
-	Shop shop;
 	MapCreator map;
+	Shop shop;
 
 public:
 	Player();
@@ -42,5 +42,6 @@ public:
 	void plowed(int x, int y);
 	MapCreator &getMapCreator();
 	bool isDead();
+	void water(int x, int y);
 };
 

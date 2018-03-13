@@ -1,6 +1,12 @@
 #pragma once
 #include <iostream>
 
+typedef enum e_state {
+	SMALL,
+	MEDIUM,
+	TALL
+} t_state;
+
 class IPlant
 {
 public:

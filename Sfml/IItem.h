@@ -5,7 +5,7 @@ class IItem
 {
 public:
 	virtual ~IItem() {};
-	virtual bool use() = 0;
+	virtual bool use(int x, int y, int playerX, int playerY) = 0;
 	virtual int getId() = 0;
 	virtual int getSellPrice() = 0;
 	virtual int getBuyPrice() = 0;

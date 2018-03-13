@@ -87,6 +87,11 @@ void Player::plowed(int x, int y) {
 	this->map.changeTileStatus(x, y, PLOWED_LAND);
 }
 
+void Player::water(int x, int y) {
+	if ((abs(this->posX - x * 100) <= 150 && abs(this->posY - y * 100) <= 150) && this->map.getMap()->status == PLOWED_LAND)
+		this->map.changeTileStatus(x, y, WET_PLOWED_LAND);
+}
+
 bool Player::isDead() {
 	if (this->map.getPlants().size() == 0 && this->inventory.getInventoryVec().size() == 0 && this->money <= 1) {
 		return true;
